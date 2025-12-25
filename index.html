@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>.TS ➜ MP4 Converter</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>🎬</text></svg>">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <h1>.TS ➜ MP4 Converter</h1>
+    <div id="status" class="pill">ffmpeg: loading…</div>
+
+    <div id="drop" class="drop" tabindex="0">
+      <div style="font-size:16px;margin-bottom:6px">Drop one or many <code>.ts</code> files</div>
+      <div class="muted">…or click to choose</div>
+      <input id="file" type="file" accept=".ts,video/MP2T" multiple style="display:none" />
+    </div>
+
+    <div class="row">
+      <label class="pill">Quality: CRF
+        <input id="crf" type="number" min="18" max="28" value="20" class="num" />
+      </label>
+      <label class="pill">Preset
+        <select id="preset" class="select">
+          <option>veryfast</option>
+          <option selected>medium</option>
+          <option>slow</option>
+        </select>
+      </label>
+      <label class="pill">Audio
+        <select id="abitrate" class="select">
+          <option>128k</option>
+          <option selected>192k</option>
+          <option>256k</option>
+        </select>
+      </label>
+    </div>
+
+    <button id="go" disabled>Convert</button>
+    <progress id="prog" max="100" value="0" style="display:none"></progress>
+    <pre id="log"></pre>
+  </main>
+
+  <!-- libs (ffmpeg runtime is now loaded inside libs/ffmpeg-worker.js) -->
+  <script src="libs/jszip.min.js"></script>
+
+  <!-- app -->
+  <script src="converter.js"></script>
+</body>
+</html>
